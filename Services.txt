@@ -1,0 +1,877 @@
+ sudo service mongodb start
+                                                                                                  
+┌──(indira㉿kali)-[~]
+└─$ mongo --quiet
+> use movie
+switched to db movie
+
+
+> db.createCollection('Film')
+{ "ok" : 1 }
+
+> db.film.insert({ 'filmID':1, 'Title of Movie':'Super30', "Year of release":2023, 'Genre':'Motivational', 'Actor':'Ritik Roshan', 'Director':'Akash', "Release details":'Place', 'Date':'2023-04-2' })
+WriteResult({ "nInserted" : 1 })
+
+
+> db.film.find().pretty()
+
+========================================================
+===============================================
+
+Assignment 1st11111111111111111111111111111111
+
+1. Create a database with the name ‘Movie’. 
+2. A ‘Film’ is a collection of documents with the following fields: 
+a. Film Id 
+b. Title of the film
+c. Year of release 
+d. Genre / Category (like adventure, action, sci-fi, romantic etc.) A film can 
+belong to more than one genre. 
+e. Actors (First name and Last name) A film can have more than one actor. 
+f. Director (First name and Last name) A film can have more than one director. 
+g. Release details (It consists of places of release, dates of release and rating of 
+the film.) 
+3. An ‘Actor’ is a collection of documents with the following fields: 
+a. Actor Id 
+b. First name
+c. Last Name 
+d. Address (Street, City, State, Country, Pin-code) 
+e. Contact Details (Email Id and Phone No) f. Age of an actor. 
+
+
+
+Create 'Movie' Database:
+
+use Movie
+
+------------------
+Insert 'Film' Document:
+Copy and paste the 'Film' document structure and insert a sample document:
+--------------------
+
+
+db.Film.insert({
+  "filmId": 1,
+  "title": "Title of the Film",
+  "yearOfRelease": 2023,
+  "genres": ["Adventure", "Action", "Sci-Fi", "Romantic"],
+  "actors": [
+    {"firstName": "Actor1_First", "lastName": "Actor1_Last"},
+    {"firstName": "Actor2_First", "lastName": "Actor2_Last"}
+  ],
+  "directors": [
+    {"firstName": "Director1_First", "lastName": "Director1_Last"},
+    {"firstName": "Director2_First", "lastName": "Director2_Last"}
+  ],
+  "releaseDetails": {
+    "places": ["Place1", "Place2"],
+    "dates": ["2023-01-01", "2023-02-15"],
+    "rating": 4.5
+  }
+})
+
+
+
+--------------
+Insert 'Actor' Document:
+Copy and paste the 'Actor' document structure and insert a sample document:
+--------------
+
+
+db.Actor.insert({
+  "actorId": 1,
+  "firstName": "Actor_First",
+  "lastName": "Actor_Last",
+  "address": {
+    "street": "Street1",
+    "city": "City1",
+    "state": "State1",
+    "country": "Country1",
+    "pinCode": "123456"
+  },
+  "contactDetails": {
+    "email": "actor@example.com",
+    "phone": "123-456-7890"
+  },
+  "age": 30
+})
+
+------------
+Check Documents:
+db.Film.find() and db.Actor.find() to check the inserted documents.
+--------------
+
+
+
+
+=========================================================================================
+
+
+// Insert at least 10 documents in the 'Film' collection:
+
+// a) Insert at least one document with the film belonging to two genres.
+
+db.Film.insert({
+  "filmId": 2,
+  "title": "Film with Two Genres",
+  "yearOfRelease": 2023,
+  "genres": ["Drama", "Thriller"],
+  "actors": [
+    {"firstName": "Actor1_First", "lastName": "Actor1_Last"}
+  ],
+  "directors": [
+    {"firstName": "Director1_First", "lastName": "Director1_Last"}
+  ],
+  "releaseDetails": {
+    "places": ["Place1", "Place2"],
+    "dates": ["2023-03-01", "2023-03-15"],
+    "rating": 4.0
+  }
+});
+
+// b) Insert at least one document with a film that is released at more than one place and on two different dates.
+db.Film.insert({
+  "filmId": 3,
+  "title": "Film with Multiple Releases",
+  "yearOfRelease": 2023,
+  "genres": ["Comedy"],
+  "actors": [
+    {"firstName": "Actor2_First", "lastName": "Actor2_Last"}
+  ],
+  "directors": [
+    {"firstName": "Director2_First", "lastName": "Director2_Last"}
+  ],
+  "releaseDetails": {
+    "places": ["Place3", "Place4"],
+    "dates": ["2023-04-01", "2023-04-15"],
+    "rating": 4.5
+  }
+});
+
+// c) Insert at least three documents with films released in the same year.
+db.Film.insert({
+  "filmId": 4,
+  "title": "Film Same Year 1",
+  "yearOfRelease": 2023,
+  "genres": ["Romance"],
+  "actors": [
+    {"firstName": "Actor3_First", "lastName": "Actor3_Last"}
+  ],
+  "directors": [
+    {"firstName": "Director3_First", "lastName": "Director3_Last"}
+  ],
+  "releaseDetails": {
+    "places": ["Place5"],
+    "dates": ["2023-05-01"],
+    "rating": 4.2
+  }
+});
+
+// Repeat the above structure with different data for additional films (5 to 10)
+
+// d) Insert at least two documents with films directed by one director.
+db.Film.insert({
+  "filmId": 7,
+  "title": "Film Directed by Director6",
+  "yearOfRelease": 2023,
+  "genres": ["Comedy"],
+  "actors": [
+    {"firstName": "Actor6_First", "lastName": "Actor6_Last"}
+  ],
+  "directors": [
+    {"firstName": "Director6_First", "lastName": "Director6_Last"}
+  ],
+  "releaseDetails": {
+    "places": ["Place8"],
+    "dates": ["2023-08-01"],
+    "rating": 4.1
+  }
+});
+
+// Repeat the above structure with different data for additional films (8 to 10)
+
+// e) Insert at least two documents with films acted by a pair 'Madhuri Dixit' and 'Shahrukh Khan'.
+db.Film.insert({
+  "filmId": 9,
+  "title": "Film Starring Madhuri Dixit and Shahrukh Khan 1",
+  "yearOfRelease": 2023,
+  "genres": ["Romance"],
+  "actors": [
+    {"firstName": "Madhuri", "lastName": "Dixit"},
+    {"firstName": "Shahrukh", "lastName": "Khan"}
+  ],
+  "directors": [
+    {"firstName": "Director7_First", "lastName": "Director7_Last"}
+  ],
+  "releaseDetails": {
+    "places": ["Place10"],
+    "dates": ["2023-10-01"],
+    "rating": 4.6
+  }
+});
+
+// Repeat the above structure with different data for additional films (10)
+
+
+
+
+// 2. Insert at least 10 documents in the collection Actor.
+// Make sure you are inserting the names of actors who have acted in films given in the 'Film' collection.
+
+// Inserting actors for films with filmId 2, 3, 4, 7, 9, 11, 12, 21, 22
+db.Actor.insert({
+  "actorId": 1,
+  "firstName": "Actor1_First",
+  "lastName": "Actor1_Last",
+  "address": {
+    "street": "Street1",
+    "city": "City1",
+    "state": "State1",
+    "country": "Country1",
+    "pinCode": "123456"
+  },
+  "contactDetails": {
+    "email": "actor1@example.com",
+    "phone": "1234567890"
+  },
+  "age": 30
+});
+
+// Repeat the above structure with different data for additional actors (2 to 10)
+
+// 3. Display all the documents inserted in both the collections.
+db.Film.find().pretty();
+db.Actor.find().pretty();
+
+// 4. Add a value to the rating of the film whose title starts with 'T'.
+db.Film.update(
+  { "title": /^T/ },
+  { $set: { "releaseDetails.rating": 4.2 } },
+  { multi: true }
+);
+
+// 5. Add an actor named "Unknown" in the 'Actor' collection.
+// Also, add details of the film in the 'Film' collection in which this actor has acted.
+db.Actor.insert({
+  "actorId": 11,
+  "firstName": "Unknown",
+  "lastName": "",
+  "address": {
+    "street": "",
+    "city": "",
+    "state": "",
+    "country": "",
+    "pinCode": ""
+  },
+  "contactDetails": {
+    "email": "",
+    "phone": ""
+  },
+  "age": 0
+});
+
+// Find a film to associate with the actor (for example, filmId 21) and add the actor to its cast.
+db.Film.update(
+  { "filmId": 21 },
+  { $addToSet: { "actors": { "firstName": "Unknown", "lastName": "" } } }
+);
+
+// 6. Delete the film with an empty title.
+db.Film.remove({ "title": "" });
+
+// 7. Delete an actor named "Unknown".
+db.Actor.remove({ "firstName": "Unknown" });
+
+// 8. Delete all actors from the 'Actor' collection who have age greater than 30.
+db.Actor.remove({ "age": { $gt: 30 } });
+
+// 9. Update the actor's address where Actor Id is 1.
+db.Actor.update(
+  { "actorId": 1 },
+  { $set: { "address.city": "NewCity" } }
+);
+
+// 10. Update the genre of the film directed by "Director1_First".
+db.Film.update(
+  { "directors.firstName": "Director1_First" },
+  { $set: { "genres": ["NewGenre"] } },
+  { multi: true }
+);
+
+
+
+=============================================================
+
+Assignment 2222222222222222222222222222222222222222222222
+
+1. Create a database with name ‘Company’. 
+2. An ‘Employee’ is a collection of documents with the following fields: 
+a) Employee ID 
+b) First Name 
+c) Last Name 
+d) Email 
+e) Phone No. 
+f) Address (House No, Street, City, State, Country, Pin-code) 
+g) Salary 
+h) Designation 
+i) Experience 
+j) Date of Joining 
+k) Birthdate 
+3. A ‘Transaction’ is a collection of documents with the following fields: 
+a) Transaction Id, 
+b) Transaction Date 
+c) Name (First Name of employee who processed the transaction) 
+d) Transaction Details (Item Id, Item Name, Quantity, Price) 
+e) Payment (Type of Payment (Debit/Credit/Cash), Total amount paid, 
+Payment Successful) 
+f) Remark (Remark field can be empty.) 
+Queries: 
+1. Insert at least 5 documents in ‘Employee’ collection. 
+2. Insert multiple documents (at least 10) into the ‘Transaction’ collection 
+by passing an array of documents to the db.collection.insert () method. 
+3. Display all the documents of both the collections in a formatted manner. 
+4. Update salary of all employees by giving an increment of Rs. 4000. 
+5. Update the remark for transaction id 201. 
+6. Update designation of an employee named “_ ” from supervisor to 
+manager. 
+7. Update designation of an employee having Employee Id as .
+8. Change the address of an employee having Employee Id as . 
+9. Delete transaction made by “ ” employee on the given date. 
+10. 10.Delete all the employees whose first name starts with ‘K’.
+--------------------------------------------------
+
+
+# 1. Create a 'Company' database
+use Company
+
+# 2. Create 'Employee' and 'Transaction' collections
+db.createCollection("Employee")
+db.createCollection("Transaction")
+
+# 3. Insert documents into the 'Employee' collection
+db.Employee.insertMany([
+  {
+    "EmployeeID": 1,
+    "FirstName": "John",
+    "LastName": "Doe",
+    "Email": "john.doe@email.com",
+    "PhoneNo": "1234567890",
+    "Address": {
+      "HouseNo": "123",
+      "Street": "Main Street",
+      "City": "Cityville",
+      "State": "Stateville",
+      "Country": "Countryville",
+      "Pin-code": "123456"
+    },
+    "Salary": 50000,
+    "Designation": "Manager",
+    "Experience": 5,
+    "DateOfJoining": ISODate("2022-01-01"),
+    "Birthdate": ISODate("1985-01-01")
+  },
+  {
+    "EmployeeID": 2,
+    "FirstName": "Jane",
+    "LastName": "Doe",
+    "Email": "jane.doe@email.com",
+    "PhoneNo": "9876543210",
+    "Address": {
+      "HouseNo": "456",
+      "Street": "Second Street",
+      "City": "Townville",
+      "State": "Stateville",
+      "Country": "Countryville",
+      "Pin-code": "654321"
+    },
+    "Salary": 60000,
+    "Designation": "Supervisor",
+    "Experience": 3,
+    "DateOfJoining": ISODate("2023-01-15"),
+    "Birthdate": ISODate("1990-05-15")
+  }
+  // Add other employees as needed
+])
+
+# 4. Insert multiple documents into the 'Transaction' collection
+db.Transaction.insertMany([
+  {
+    "TransactionId": 201,
+    "TransactionDate": ISODate("2023-01-01"),
+    "Name": "John Doe",
+    "TransactionDetails": [
+      { "ItemId": 1, "ItemName": "Product1", "Quantity": 2, "Price": 100 },
+      // Add other items as needed
+    ],
+    "Payment": { "Type": "Debit", "TotalAmountPaid": 200, "PaymentSuccessful": true },
+    "Remark": "Initial transaction"
+  },
+  {
+    "TransactionId": 202,
+    "TransactionDate": ISODate("2023-02-01"),
+    "Name": "Jane Doe",
+    "TransactionDetails": [
+      { "ItemId": 2, "ItemName": "Product2", "Quantity": 1, "Price": 50 },
+      // Add other items as needed
+    ],
+    "Payment": { "Type": "Credit", "TotalAmountPaid": 50, "PaymentSuccessful": true },
+    "Remark": "Second transaction"
+  }
+  // Add other transactions as needed
+])
+
+# 5. Display all documents from 'Employee' collection
+db.Employee.find()
+
+# 6. Display all documents from 'Transaction' collection
+db.Transaction.find()
+
+# 7. Update salary of all employees by giving an increment of Rs. 4000
+db.Employee.updateMany({}, { $inc: { Salary: 4000 } })
+
+# 8. Update the remark for transaction id 201
+db.Transaction.updateOne({ "TransactionId": 201 }, { $set: { "Remark": "Updated remark" } })
+
+# 9. Update designation of an employee named “_ ” from supervisor to manager
+db.Employee.updateOne({ "FirstName": "_ " }, { $set: { "Designation": "Manager" } })
+
+# 10. Update designation of an employee having Employee Id as 2
+db.Employee.updateOne({ "EmployeeID": 2 }, { $set: { "Designation": "New Designation" } })
+
+# 11. Change the address of an employee having Employee Id as 1
+db.Employee.updateOne({ "EmployeeID": 1 }, { $set: { "Address": { /* new address details */ } } })
+
+# 12. Delete transaction made by “Jane Doe” on the given date
+db.Transaction.deleteOne({ "Name": "Jane Doe", "TransactionDate": ISODate("2023-02-01") })
+
+# 13. Delete all the employees whose first name starts with ‘K’
+db.Employee.deleteMany({ "FirstName": /^K/ })
+
+
+==================================================================
+==================================================================
+
+Assignment 3333333333333333333333333333333333333333333333
+
+
+This assignment is based on ‘Movie’ database having collections ‘Film’ and 
+‘Actor’. 
+Note: It is expected that student should fill in the data relevant to the queries 
+given in the assignment. The result set should not be empty. 
+1. Find the titles of all the films starting with the letter ‘R’ released during the 
+year 2009 and 2011. 
+2. Find the list of films acted by an actor " ". 
+3. Find all the films released in 90s. 
+4. Find all films belonging to “Adventure” and “Thriller” genre.
+5. Find all the films having ‘A’ rating. 
+6. Arrange the film names in ascending order and release year should be in 
+descending order. 
+7. Sort the actors in ascending order according to their age. 
+8. Find movies that are comedies or dramas and are released after 2013. 
+9. Show the latest 2 films acted by an actor “ ”. 
+10.List the titles of films acted by actors “ ” and “ ”. 
+11.Retrieve films with an actor living in Spain. 
+12.Retrieve films with actor details.
+
+
+
+# Step 1: Create a 'Movie' database
+use Movie
+
+# Step 2: Create a 'Film' collection
+db.createCollection("Film")
+
+# Step 3: Create an 'Actor' collection
+db.createCollection("Actor")
+
+# Step 4: Insert documents into the 'Film' collection
+db.Film.insertMany([
+  {
+    FilmId: 1,
+    Title: "Film1",
+    Year: 2009,
+    Genre: ["Adventure", "Action"],
+    Actors: [{ FirstName: "Actor1", LastName: "LastName1" }],
+    Directors: [{ FirstName: "Director1", LastName: "LastName1" }],
+    ReleaseDetails: {
+      Places: ["Place1"],
+      Dates: ["Date1"],
+      Rating: "A"
+    }
+  },
+  // Insert other films as needed
+])
+
+# Step 5: Insert documents into the 'Actor' collection
+db.Actor.insertMany([
+  {
+    ActorId: 1,
+    FirstName: "Actor1",
+    LastName: "LastName1",
+    Address: { Street: "Street1", City: "City1", State: "State1", Country: "Country1", "Pin-code": "Pin1" },
+    ContactDetails: { Email: "actor1@email.com", PhoneNo: "1234567890" },
+    Age: 30
+  },
+  // Insert other actors as needed
+])
+
+# Now you can run the queries from the previous response
+
+# 1. Find the titles of all the films starting with the letter ‘R’ released during the year 2009 and 2011.
+db.Film.find({ Title: /^R/, Year: { $in: [2009, 2011] } }, { Title: 1, _id: 0 })
+
+# 2. Find the list of films acted by an actor " ".
+db.Film.find({ "Actors.FirstName": " ", "Actors.LastName": " " }, { Title: 1, _id: 0 })
+
+# 3. Find all the films released in 90s.
+db.Film.find({ Year: { $gte: 1990, $lt: 2000 } })
+
+# 4. Find all films belonging to “Adventure” and “Thriller” genre.
+db.Film.find({ Genre: { $in: ["Adventure", "Thriller"] } })
+
+# 5. Find all the films having ‘A’ rating.
+db.Film.find({ "ReleaseDetails.Rating": "A" }, { Title: 1, _id: 0 })
+
+# 6. Arrange the film names in ascending order and release year should be in descending order.
+db.Film.find().sort({ Title: 1, Year: -1 })
+
+# 7. Sort the actors in ascending order according to their age.
+db.Actor.find().sort({ Age: 1 })
+
+# 8. Find movies that are comedies or dramas and are released after 2013.
+db.Film.find({ Genre: { $in: ["Comedy", "Drama"] }, Year: { $gt: 2013 } })
+
+# 9. Show the latest 2 films acted by an actor “ ”.
+db.Film.find({ "Actors.FirstName": " ", "Actors.LastName": " " }).sort({ Year: -1 }).limit(2)
+
+# 10. List the titles of films acted by actors “ ” and “ ”.
+db.Film.find({ Actors: { $elemMatch: { FirstName: " ", LastName: " " } } }, { Title: 1, _id: 0 })
+
+# 11. Retrieve films with an actor living in Spain.
+db.Film.find({ "Actors.Address.Country": "Spain" })
+
+# 12. Retrieve films with actor details.
+db.Film.aggregate([{ $lookup: { from: "Actor", localField: "Actors.FirstName", foreignField: "FirstName", as: "ActorDetails" } }, { $unwind: "$ActorDetails" }, { $project: { _id: 0, Title: 1, "ActorDetails.FirstName": 1, "ActorDetails.LastName": 1 } }])
+
+==================================================================
+==================================================================
+44444444444444444444444444444444444444444
+
+// Assignment 4 - Student Database:
+
+# Connect to MongoDB
+mongo
+
+# Create a new database named 'Student'
+use Student
+
+# Create 'StudentInfo' collection and insert documents
+db.createCollection('StudentInfo')
+db.StudentInfo.insertMany([
+    { SRN: "SRN1", Sname: "John Doe", Degree: "BCA", Sem: 1, CGPA: 7.8 },
+    { SRN: "SRN2", Sname: "Jane Smith", Degree: "BBA", Sem: 2, CGPA: 8.2 },
+    { SRN: "SRN3", Sname: "Rahul Gupta", Degree: "BCA", Sem: 1, CGPA: 6.5 },
+    { SRN: "SRN4", Sname: "Priya Sharma", Degree: "MCA", Sem: 3, CGPA: 9.0 },
+    { SRN: "SRN5", Sname: "Kiran Kumar", Degree: "BCA", Sem: 2, CGPA: 7.0 },
+    { SRN: "SRN6", Sname: "Ravi Verma", Degree: "BBA", Sem: 1, CGPA: 8.5 },
+    { SRN: "SRN7", Sname: "Shalini Singh", Degree: "BCA", Sem: 3, CGPA: 7.2 },
+    { SRN: "SRN8", Sname: "Rahul Sharma", Degree: "BBA", Sem: 2, CGPA: 6.8 },
+    { SRN: "SRN9", Sname: "Pooja Mehta", Degree: "BCA", Sem: 2, CGPA: 8.0 },
+    { SRN: "SRN10", Sname: "Ajay Kumar", Degree: "MCA", Sem: 1, CGPA: 8.7 },
+])
+
+# 1. Display all the documents
+db.StudentInfo.find()
+
+# 2. Display all the students in BCA
+db.StudentInfo.find({ Degree: "BCA" })
+
+# 3. Display all the students in ascending order
+db.StudentInfo.find().sort({ Sname: 1 })
+
+# 4. Display first 5 students
+db.StudentInfo.find().limit(5)
+
+# 5. List the degree of student "Rahul"
+db.StudentInfo.findOne({ Sname: "Rahul Gupta" }).Degree
+
+# 6. Display the number of students in BCA
+db.StudentInfo.find({ Degree: "BCA" }).count()
+
+# 7. Display all the degrees without _id
+db.StudentInfo.find({}, { _id: 0, Degree: 1 })
+
+# 8. Display all the distinct degrees
+db.StudentInfo.distinct("Degree")
+
+# 9. Display all the BCA students with CGPA greater than 6, but less than 7.5
+db.StudentInfo.find({ Degree: "BCA", CGPA: { $gt: 6, $lt: 7.5 } })
+
+# 10. Display all the students in BCA and in 6th Sem
+db.StudentInfo.find({ Degree: "BCA", Sem: 6 })
+
+============================================
+
+
+NEO4j
+
+111111111111111
+
+// Assume the following Cypher queries are executed on a Neo4j database.
+
+// 1. Create nodes and relationships:
+CREATE (book1:Book {Title: "Book1", Tags: ["Tag1", "Tag2"], Status: "In Library", Condition: "New", Cost: 20, Type: "Novel"})
+CREATE (book2:Book {Title: "Book2", Tags: ["Tag3", "Tag4"], Status: "Issued", Condition: "Old", Cost: 15, Type: "Journal"})
+CREATE (person1:Person {Name: "Author1"})
+CREATE (person2:Person {Name: "Translator1"})
+CREATE (person3:Person {Name: "Reader1"})
+CREATE (person4:Person {Name: "Publisher1", City: "Pune"})
+CREATE (book1)-[:PublishedBy]->(person4)
+CREATE (person3)-[:Votes {Rating: 4}]->(book1)
+CREATE (person3)-[:ReviewedBy {Review: "Good book!"}]->(book2)
+CREATE (book2)-[:TranslatedBy]->(person2)
+CREATE (book2)-[:IssuedBy]->(person3)
+
+// 2. Return properties of nodes:
+MATCH (n) RETURN n;
+
+// 3. Return nodes labels:
+MATCH (n) RETURN labels(n) AS Labels;
+
+// 4. Return relationships with properties:
+MATCH ()-[r]->() RETURN type(r) AS Relationship, properties(r) AS Properties;
+
+// Queries:
+// a) List all people who have issued a book "Book1"
+MATCH (person:Person)-[:IssuedBy]->(book:Book {Title: "Book1"}) RETURN person.Name;
+
+// b) Count the number of people who have read "Book2"
+MATCH (person:Person)-[:Votes]->(book:Book {Title: "Book2"}) RETURN COUNT(DISTINCT person);
+
+// c) Add a property "Number of books issued" for Mr. Joshi and set its value as the count
+MATCH (person:Person {Name: "Joshi"})-[r:IssuedBy]->() WITH person, COUNT(r) AS numberOfBooksIssued SET person.numberOfBooksIssued = numberOfBooksIssued;
+
+// d) List the names of publishers from Pune city
+MATCH (publisher:Person:Publisher {City: "Pune"}) RETURN publisher.Name;
+==========================================================
+
+22222222222222222222222222222222222222
+. Consider a Song database, with labels as Artists, 
+Song,Recording_company, Recoding_studio, song author etc. 
+Relationships can be as follows 
+Artist→[Performs]→Song →[Written by]→Song_author. 
+Song →[Recorded in ] →Recording Studio →[managed by] →recordingCompany
+Recording Company →[Finances] →Song 
+You may add more labels and relationship and their properties, as per 
+assumptions.
+Queries :
+a) List the names of songs written by “:…..” 
+b) List the names of record companies who have financed for the song “….” 
+c) List the names of artist performing the song “…..” 
+d) Name the songs recorded by the studio “ …….”
+
+
+
+
+// Assume the following Cypher queries are executed on a Neo4j database.
+
+// 1. Create nodes and relationships:
+CREATE (artist1:Artist {Name: "Artist1"})
+CREATE (song1:Song {Title: "Song1"})
+CREATE (song2:Song {Title: "Song2"})
+CREATE (songAuthor1:SongAuthor {Name: "Author1"})
+CREATE (recordingStudio1:RecordingStudio {Name: "Studio1"})
+CREATE (recordingCompany1:RecordingCompany {Name: "Company1"})
+
+CREATE (artist1)-[:Performs]->(song1)
+CREATE (song1)-[:WrittenBy]->(songAuthor1)
+CREATE (song1)-[:RecordedIn]->(recordingStudio1)
+CREATE (recordingStudio1)-[:ManagedBy]->(recordingCompany1)
+CREATE (recordingCompany1)-[:Finances]->(song2)
+
+// 2. Return properties of nodes:
+MATCH (n) RETURN n;// Assume the following Cypher queries are executed on a Neo4j database.
+
+// 1. Create nodes and relationships:
+CREATE (employee1:Employee {Name: "Employee1"})
+CREATE (department1:Department {Name: "Department1"})
+CREATE (skillset1:Skillset {Skill: "Skill1"})
+CREATE (project1:Project {Title: "Project1", Property1: "Value1"})
+CREATE (project2:Project {Title: "Project2", Property1: "Value2"})
+
+CREATE (employee1)-[:Works_in]->(department1)
+CREATE (employee1)-[:Has_acquired]->(skillset1)
+CREATE (employee1)-[:Assigned_to]->(project1)
+CREATE (project1)-[:Controlled_by]->(department1)
+CREATE (employee1)-[:Project_manager]->(project2)
+
+// 2. Return properties of nodes:
+MATCH (n) RETURN n;
+
+// 3. Return nodes labels:
+MATCH (n) RETURN labels(n) AS Labels;
+
+// 4. Return relationships with properties:
+MATCH ()-[r]->() RETURN type(r) AS Relationship, properties(r) AS Properties;
+
+// Queries:
+// a) List the names of employees in department "Department1"
+MATCH (employee:Employee)-[:Works_in]->(department:Department {Name: "Department1"}) RETURN employee.Name;
+
+// b) List the projects along with their properties, controlled by department "Department1"
+MATCH (project:Project)-[:Controlled_by]->(department:Department {Name: "Department1"}) RETURN project, department;
+
+// c) List the departments along with the count of employees in it
+MATCH (department:Department)<-[:Works_in]-(employee:Employee) 
+RETURN department, COUNT(employee) AS EmployeeCount;
+
+// d) List the skillset for an employee "Employee1"
+MATCH (employee:Employee {Name: "Employee1"})-[:Has_acquired]->(skillset:Skillset) RETURN skillset.Skill;
+
+
+// 3. Return nodes labels:
+MATCH (n) RETURN labels(n) AS Labels;
+
+// 4. Return relationships with properties:
+MATCH ()-[r]->() RETURN type(r) AS Relationship, properties(r) AS Properties;
+
+// Queries:
+// a) List the names of songs written by "Author1"
+MATCH (song:Song)-[:WrittenBy]->(author:SongAuthor {Name: "Author1"}) RETURN song.Title;
+
+// b) List the names of record companies who have financed for the song "Song2"
+MATCH (company:RecordingCompany)-[:Finances]->(song:Song {Title: "Song2"}) RETURN company.Name;
+
+// c) List the names of artists performing the song "Song1"
+MATCH (artist:Artist)-[:Performs]->(song:Song {Title: "Song1"}) RETURN artist.Name;
+
+// d) Name the songs recorded by the studio "Studio1"
+MATCH (song:Song)-[:RecordedIn]->(studio:RecordingStudio {Name: "Studio1"}) RETURN song.Title;
+
+
+===================================================
+
+333333333333333333333333333333
+
+3. Consider an Employee database, with a minimal set of labels as follows 
+Employee: denotes a person as an employee of the organization 
+Department: denotes the different departments, in which employees work. 
+Skillset: A list of skills acquired by an employee 
+Projects: A list of projects in which an employee works. 
+A minimal set of relationships can be as follows: 
+Works_in : employee works in a department 
+Has_acquired: employee has acquired a skill 
+Assigned_to : employee assigned to a project 
+Controlled_by: A project is controlled by a department 
+Project_manager : Employee is a project_manager of a Project
+Queries
+a) List the names of employees in department “……..” 
+b) List the projects along with their properties, controlled by department “……” 
+c) List the departments along with the count of employees in it 
+d) List the skillset for an employee “…….
+
+
+
+
+// Assume the following Cypher queries are executed on a Neo4j database.
+
+// 1. Create nodes and relationships:
+CREATE (employee1:Employee {Name: "Employee1"})
+CREATE (department1:Department {Name: "Department1"})
+CREATE (skillset1:Skillset {Skill: "Skill1"})
+CREATE (project1:Project {Title: "Project1", Property1: "Value1"})
+CREATE (project2:Project {Title: "Project2", Property1: "Value2"})
+
+CREATE (employee1)-[:Works_in]->(department1)
+CREATE (employee1)-[:Has_acquired]->(skillset1)
+CREATE (employee1)-[:Assigned_to]->(project1)
+CREATE (project1)-[:Controlled_by]->(department1)
+CREATE (employee1)-[:Project_manager]->(project2)
+
+// 2. Return properties of nodes:
+MATCH (n) RETURN n;
+
+// 3. Return nodes labels:
+MATCH (n) RETURN labels(n) AS Labels;
+
+// 4. Return relationships with properties:
+MATCH ()-[r]->() RETURN type(r) AS Relationship, properties(r) AS Properties;
+
+// Queries:
+// a) List the names of employees in department "Department1"
+MATCH (employee:Employee)-[:Works_in]->(department:Department {Name: "Department1"}) RETURN employee.Name;
+
+// b) List the projects along with their properties, controlled by department "Department1"
+MATCH (project:Project)-[:Controlled_by]->(department:Department {Name: "Department1"}) RETURN project, department;
+
+// c) List the departments along with the count of employees in it
+MATCH (department:Department)<-[:Works_in]-(employee:Employee) 
+RETURN department, COUNT(employee) AS EmployeeCount;
+
+// d) List the skillset for an employee "Employee1"
+MATCH (employee:Employee {Name: "Employee1"})-[:Has_acquired]->(skillset:Skillset) RETURN skillset.Skill;
+
+
+
+=============================================================================================
+4444444444444444444444444444444444444444
+
+. Create a Social network database , with labels as Person, Affiliations, 
+Groups, Story, Timeline etc. Some of the relationships can be as follows: 
+Person→[friend of]→Person→[affiliated to]→affiliations 
+Person→[belongs to]→Groups, Person→[create]→Story→[refers to] →Person 
+Person→[creates]→Timeline→[reference for]→Story , 
+Timeline→[contains]→Messages
+Queries
+a) Find all friends of “John”, along with the year, since when john knows them. 
+b) List out the affiliations of John. 
+c) Find all friends of john, who are born in the same year as John 
+d) List out the messages posted by John in his timeline, during the year 2015.
+--------------------
+
+// Assume the following Cypher queries are executed on a Neo4j database.
+
+// 1. Create nodes and relationships:
+CREATE (john:Person {Name: "John", BirthYear: 1990})
+CREATE (friend1:Person {Name: "Friend1", BirthYear: 1992})
+CREATE (friend2:Person {Name: "Friend2", BirthYear: 1988})
+CREATE (affiliation:Affiliations {Name: "Affiliation1"})
+CREATE (group:Groups {Name: "Group1"})
+CREATE (story:Story {Title: "Story1"})
+CREATE (timeline:Timeline {Year: 2015})
+CREATE (message1:Messages {Content: "Message1"})
+
+CREATE (john)-[:friend_of {Since: 2010}]->(friend1)
+CREATE (john)-[:friend_of {Since: 2012}]->(friend2)
+CREATE (john)-[:affiliated_to]->(affiliation)
+CREATE (john)-[:belongs_to]->(group)
+CREATE (john)-[:create]->(story)-[:refers_to]->(john)
+CREATE (john)-[:creates]->(timeline)-[:reference_for]->(story)
+CREATE (timeline)-[:contains]->(message1)
+
+// 2. Return properties of nodes:
+MATCH (n) RETURN n;
+
+// 3. Return nodes labels:
+MATCH (n) RETURN labels(n) AS Labels;
+
+// 4. Return relationships with properties:
+MATCH ()-[r]->() RETURN type(r) AS Relationship, properties(r) AS Properties;
+
+// Queries:
+// a) Find all friends of "John", along with the year, since when John knows them.
+MATCH (john:Person {Name: "John"})-[:friend_of]->(friend:Person) RETURN friend.Name, friend.BirthYear, john.friend_of.Since;
+
+// b) List out the affiliations of John.
+MATCH (john:Person {Name: "John"})-[:affiliated_to]->(affiliation:Affiliations) RETURN affiliation.Name;
+
+// c) Find all friends of John, who are born in the same year as John.
+MATCH (john:Person {Name: "John"})-[:friend_of]->(friend:Person {BirthYear: john.BirthYear}) RETURN friend.Name;
+
+// d) List out the messages posted by John in his timeline during the year 2015.
+MATCH (john:Person {Name: "John"})-[:creates]->(timeline:Timeline {Year: 2015})-[:contains]->(message:Messages) RETURN message.Content;
+
+
+
+
+
